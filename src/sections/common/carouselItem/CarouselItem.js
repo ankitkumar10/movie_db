@@ -48,9 +48,16 @@ const CarouselItem = ({item, imageConfigs, height=null, width=null}) => {
 						}}>
 						<CircularProgress  
 							size="md" 
-							determinate 
+							variant="solid"
+							determinate
+							sx={{
+								"--CircularProgress-trackColor": "white",
+								"stroke": `${rating < 5 ? "red" : rating < 7 ? "orange" : "green"}`,
+							}}
+							color='white'
 							value={Math.round(rating?.toFixed(1)) * 10} 
-							variant="solid">
+							>
+								
 							{rating > 0 ? rating.toFixed(1) : "NA"}
 						</CircularProgress>
 						</Stack>
