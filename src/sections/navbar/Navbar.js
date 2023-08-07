@@ -48,8 +48,8 @@ const Navbar = () => {
 						spacing={2}
 						sx={{display: {xs: "none", sm:"flex"}}}
 						>
-							<Stack><Link to={`/discover/movie`}>MOVIES</Link></Stack>
-							<Stack><Link to={`/discover/tv`}>TV</Link></Stack>
+							<Stack><Link className='navbar__menu__options_btn' to={`/discover/movie`}>MOVIES</Link></Stack>
+							<Stack><Link  className='navbar__menu__options_btn' to={`/discover/tv`}>TV</Link></Stack>
 					</Stack>
 					<Stack className='navbar__search__container'>
 						<IconButton
@@ -57,7 +57,7 @@ const Navbar = () => {
 							  onClick={handleSearchClick}
 								// disabled={}
 								>
-							<FaSearch /> 
+							<FaSearch className='navbar__menu__options_btn'/> 
 						</IconButton>
 					</Stack>
 					<Stack className='navbar__hamburger__container' sx={{display: {xs: "flex", sm:"none"}}}>

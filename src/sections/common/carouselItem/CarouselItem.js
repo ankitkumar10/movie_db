@@ -29,7 +29,7 @@ const CarouselItem = ({item, imageConfigs, height=null, width=null}) => {
 				width:`${width || "140px"}`,
 				backgroundColor: "inherit"
 		}}>
-			item ?
+			
 			<Link to={linkUrl}>
 			<CardActionArea>
 				<CardMedia
@@ -69,10 +69,7 @@ const CarouselItem = ({item, imageConfigs, height=null, width=null}) => {
 					</Stack>
         </CardContent>
 			</CardActionArea>
-			</Link> : 
-			<CardActionArea>			
-				<Skeleton />
-			</CardActionArea>
+			</Link> 
 		</Card>
 	)
 }
