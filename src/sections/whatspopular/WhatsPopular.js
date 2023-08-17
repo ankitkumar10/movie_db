@@ -3,14 +3,17 @@ import "./WhatsPopular.scss";
 import { Stack } from '@mui/material';
 import CarouselHeader from '../common/carouselHeader/CarouselHeader';
 import { getImageConfigs } from '../../features/api/configurationSlice';
-import { getWhatsPopular } from '../../features/api/apiSlice';
+import { getStatus, getWhatsPopular } from '../../features/api/apiSlice';
 import { useSelector } from 'react-redux';
 import ScrollableCarousel from '../common/scrollableCrousel/ScrollableCarousel';
 import CarouselItem from '../common/carouselItem/CarouselItem';
+import { skeleton } from '../../utility/common';
 
 const WhatsPopular = () => {
 	const whatsPopulardata = useSelector(getWhatsPopular);
 	const imageConfigs = useSelector(getImageConfigs);
+	const status = useSelector(getStatus)
+	const contentLoaded = status === "fulfilled";
 
 	return (
 		<Stack className='whatspopular__container'  spacing={2}>
@@ -25,7 +28,7 @@ const WhatsPopular = () => {
 			<Stack>
 				<ScrollableCarousel >
 					<Stack direction="row" spacing={2}>
-					{whatsPopulardata.map(item => {
+					{whatsPopulardata.length && contentLoaded ? whatsPopulardata.map(item => {
 						return (
 							<Stack key={item.id}>
 								<CarouselItem 
@@ -34,7 +37,7 @@ const WhatsPopular = () => {
 									/>
 							</Stack>
 						)
-					})}
+					}): skeleton}
 					</Stack>
 				</ScrollableCarousel>
 			</Stack>

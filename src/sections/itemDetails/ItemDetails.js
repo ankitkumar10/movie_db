@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import ItemDetailsDescription from './itemDetailsDescription/ItemDetailsDescription';
 import ItemDetailsTopCast from './itemDetailsTopCast/ItemDetailsTopCast';
-// import ItemDetailsVideos from './itemDetailsVideos/ItemDetailsVideos';
+import ItemDetailsVideos from './itemDetailsVideos/ItemDetailsVideos';
 import ItemDetailsSimilar from './itemDetailsSimilar/ItemDetailsSimilar';
 import ItemDetailsRecommendation from './itemDetailsRecommendation/ItemDetailsRecommendation';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCrewDetails, fetchItemDetails, fetchOfficialVideos } from '../../features/api/itemDetailsSlice';
+import { fetchCrewDetails, fetchItemDetails, fetchOfficialVideos, getItemDetails } from '../../features/api/itemDetailsSlice';
 import "./ItemDetails.scss";
 import { getOfficialVideos } from '../../features/api/itemDetailsSlice';
 import TrailerModal from './TrailerModal';
@@ -17,6 +17,7 @@ const ItemDetails = ({section}) => {
 	const dispatch = useDispatch();
 	const [play, setPlay] = useState(false);
 	const officialVideos = useSelector(getOfficialVideos);
+	const {data, loading} = useSelector(getItemDetails);
 	let trailer = null;
 
 	if(officialVideos?.length) {
@@ -38,15 +39,21 @@ const ItemDetails = ({section}) => {
 	
 	return (
 		<Stack className='itemDetails__container' spacing={4}>
+			<>
+		{!loading ?
+			<>
 			{play && <Stack>
 				<TrailerModal videoId={trailer?.key} play={play} setPlay={setPlay}/>
 			</Stack>
 			}
-			<ItemDetailsDescription setPlay={setPlay}/>
+			<ItemDetailsDescription setPlay={setPlay} data={data} loading={loading}/>
 			<ItemDetailsTopCast />
-			{/* <ItemDetailsVideos /> */}
+			<ItemDetailsVideos />
 			<ItemDetailsSimilar section={section} id={id}/>
 			<ItemDetailsRecommendation section={section} id={id}/>
+			</>
+			 :"Loading..."}
+			</>
 		</Stack>
 	)
 }

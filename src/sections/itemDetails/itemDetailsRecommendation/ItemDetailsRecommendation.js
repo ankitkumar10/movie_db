@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { getImageConfigs } from '../../../features/api/configurationSlice';
 import { axiosInstance } from '../../../utility/constants';
 import { BASE_URL } from '../../../utility/constants';
-import { Stack } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import CarouselHeader from '../../common/carouselHeader/CarouselHeader';
 import CarouselItem from '../../common/carouselItem/CarouselItem';
 import ScrollableCarousel from '../../common/scrollableCrousel/ScrollableCarousel';
@@ -35,7 +35,7 @@ const ItemDetailsRecommendation = ({section, id}) => {
 			<Stack>
 				<ScrollableCarousel >
 					<Stack direction="row" spacing={2}>
-					{recommendedItems.map(item => {
+					{recommendedItems.length ? recommendedItems.map(item => {
 						return (
 							<Stack key={item.id}>
 								<CarouselItem 
@@ -44,7 +44,9 @@ const ItemDetailsRecommendation = ({section, id}) => {
 									/>
 							</Stack>
 						)
-					})}
+					}): <Stack spacing={1}>
+						<Typography sx={{opacity: 0.5}}>No Recommendations Found.</Typography>
+					</Stack>}
 					</Stack>
 				</ScrollableCarousel>
 			</Stack>

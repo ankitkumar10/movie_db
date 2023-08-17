@@ -1,5 +1,6 @@
 import { axiosInstance } from "./constants";
 import { setImageConfigs } from "../features/api/configurationSlice";
+import { Stack, Skeleton } from "@mui/material";
 
 export const getConfigurationDetails = (async (dispatch) => {
 	try {
@@ -14,3 +15,13 @@ export const getConfigurationDetails = (async (dispatch) => {
 		console.log(err)
 	}
 });
+
+export const skeleton =  (
+	<Stack className='skeleton-container' direction="row" spacing={2}>
+					<Skeleton variant="rectangular" width={140} height={200}/> 
+					<Skeleton variant="rectangular" width={140} height={200}/> 
+					<Skeleton variant="rectangular" width={140} height={200}/> 
+					<Skeleton variant="rectangular" width={140} height={200}/> 
+					<Skeleton variant="rectangular" width={140} height={200}/> 
+	</Stack>
+)

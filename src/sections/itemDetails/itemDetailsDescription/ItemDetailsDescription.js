@@ -1,15 +1,15 @@
 import React from 'react';
 import { Stack, Card, Typography, Chip, IconButton, Skeleton } from '@mui/material';
-import { getCrewDetails, getItemDetails } from '../../../features/api/itemDetailsSlice';
+import { getCrewDetails } from '../../../features/api/itemDetailsSlice';
 import { useSelector } from 'react-redux';
 import { getImageConfigs } from '../../../features/api/configurationSlice';
 import CircularProgress from '@mui/joy/CircularProgress';
 import "./ItemDetailsDescription.scss";
 import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
 import Divider from '@mui/joy/Divider';
-
-const ItemDetailsDescription = ({setPlay}) => {
-	const {data: itemDetails, loading} = useSelector(getItemDetails);
+ 
+const ItemDetailsDescription = ({setPlay, data, loading}) => {
+	const itemDetails = data;
 	const crewDetails = useSelector(getCrewDetails);
 	const imageConfigs = useSelector(getImageConfigs);
 	const posterUrl = Object.keys(imageConfigs).length && itemDetails && `${imageConfigs?.poster}${itemDetails?.poster_path} `;

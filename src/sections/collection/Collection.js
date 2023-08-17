@@ -53,7 +53,7 @@ const Collection = () => {
 			{!(data?.results?.length) ?
 					<Stack>
 					<Typography>
-						Sorry, no relevant result found for {query}
+						Loading results for {query}
 					</Typography>
 				</Stack>
 				

@@ -3,14 +3,17 @@ import "./TopRated.scss";
 import { Stack } from '@mui/material';
 import CarouselHeader from '../common/carouselHeader/CarouselHeader';
 import { getImageConfigs } from '../../features/api/configurationSlice';
-import { getTopRated } from '../../features/api/apiSlice';
+import { getStatus, getTopRated } from '../../features/api/apiSlice';
 import { useSelector } from 'react-redux';
 import ScrollableCarousel from '../common/scrollableCrousel/ScrollableCarousel';
 import CarouselItem from '../common/carouselItem/CarouselItem';
+import { skeleton } from '../../utility/common';
 
 const TopRated = () => {
 	const topRatedData = useSelector(getTopRated);
 	const imageConfigs = useSelector(getImageConfigs);
+	const status = useSelector(getStatus)
+	const contentLoaded = status === "fulfilled";
 
 	return (
 		<Stack className='toprated__container'  spacing={2}>
@@ -25,7 +28,7 @@ const TopRated = () => {
 			<Stack>
 				<ScrollableCarousel >
 					<Stack direction="row" spacing={2}>
-					{topRatedData.map(item => {
+					{topRatedData.length && contentLoaded ? topRatedData.map(item => {
 						return (
 							<Stack key={item.id}>
 								<CarouselItem 
@@ -34,7 +37,7 @@ const TopRated = () => {
 									/>
 							</Stack>
 						)
-					})}
+					}): skeleton}
 					</Stack>
 				</ScrollableCarousel>
 			</Stack>

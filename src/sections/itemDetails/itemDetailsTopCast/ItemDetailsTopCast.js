@@ -30,7 +30,7 @@ const ItemDetailsTopCast = () => {
 			<Stack direction="column">
 				<ScrollingCarousel>
 				<Stack direction="row" spacing={2}>	
-				{crewDetails?.cast?.map(crew => {
+				{crewDetails?.cast?.length? crewDetails?.cast?.map(crew => {
 					return (
 						<Stack direction="column" alignItems="center" spacing={1} key={crew?.name}>
 							<Avatar 
@@ -45,7 +45,7 @@ const ItemDetailsTopCast = () => {
 								<Typography sx={{fontSize:"14px", opacity: "0.5"}}>{crew?.character.substring(0,30)}</Typography>
 						</Stack>
 					)
-				})}
+				}): ""}
 				</Stack>
 			
 				</ScrollingCarousel>

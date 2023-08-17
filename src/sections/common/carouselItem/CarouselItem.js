@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/joy/CircularProgress';
 import "./CarouselItem.scss";
 import { Link } from 'react-router-dom';
-import Skeleton from '@mui/material/Skeleton';
 
 const CarouselItem = ({item, imageConfigs, height=null, width=null}) => {
 	const posterImageUrl = `${imageConfigs?.poster}${item?.poster_path}`;

@@ -49,7 +49,7 @@ const ItemDetailsSimilar = ({section, id}) => {
 			<Stack>
 				<ScrollableCarousel >
 					<Stack direction="row" spacing={2}>
-					{similarItems.map(item => {
+					{similarItems.length ? similarItems.map(item => {
 						return (
 							<Stack key={item.id}>
 								<CarouselItem 
@@ -58,7 +58,9 @@ const ItemDetailsSimilar = ({section, id}) => {
 									/>
 							</Stack>
 						)
-					})}
+					}): <Stack spacing={1}>
+					<Typography sx={{opacity: 0.5}}>No Similar content Found.</Typography>
+				</Stack>}
 					</Stack>
 				</ScrollableCarousel>
 			</Stack>
